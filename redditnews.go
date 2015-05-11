@@ -46,7 +46,7 @@ func main() {
 	er := json.Unmarshal(body, &b)
 	check(er)
 
-	for i := 0; i < 25; i++ {
+	for i := 0; i < len(b.Data.Children); i++ {
 		fmt.Printf("Title: %v\n", b.Data.Children[i].Data_.Title)
 		fmt.Printf("Author: %v\n", b.Data.Children[i].Data_.Author)
 		fmt.Printf("Score: %v\n", b.Data.Children[i].Data_.Score)

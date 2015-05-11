@@ -8,6 +8,19 @@ import (
 	"net/http"
 )
 
+type News struct {
+	Data struct {
+		Children []struct {
+			Data_ struct {
+				Score  float64 `json:"score"`
+				Author string  `json:"author"`
+				Link   string  `json:"permalink"`
+				Title  string  `json:"title"`
+			} `json:"data"`
+		} `json:"children"`
+	} `json:"data"`
+}
+
 func check(e error) {
 	if e != nil {
 		log.Fatal(e)
@@ -15,19 +28,6 @@ func check(e error) {
 }
 
 func main() {
-
-	type News struct {
-		Data struct {
-			Children []struct {
-				Data_ struct {
-					Score  float64 `json:"score"`
-					Author string  `json:"author"`
-					Link   string  `json:"permalink"`
-					Title  string  `json:"title"`
-				} `json:"data"`
-			} `json:"children"`
-		} `json:"data"`
-	}
 
 	resp, err := http.Get("http://www.reddit.com/r/golang.json")
 	check(err)
